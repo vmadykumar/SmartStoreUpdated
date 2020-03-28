@@ -1,5 +1,5 @@
 pipeline {
-        agent {label 'docker'}
+        agent {label 'windows'}
         parameters {
                 booleanParam(name: 'Run_Build', defaultValue: false, description: 'Will Build Code and execute Test Cases')
                 booleanParam(name: 'Run_SonarAnalysis', defaultValue: false, description: 'Will Run Sonar Code Analysis')
@@ -33,21 +33,21 @@ pipeline {
                                 expression { params.Run_SonarAnalysis == true}
                         }
                         steps { 
-                                dir('Code') {
+                                
                                         echo 'Executing sonar Analysis'        
-                                        withSonarQubeEnv('sonar server') {
+                                        withSonarQubeEnv('sonarscanner') {
                                                 bat 'sonar:sonar'  
-                                        }
+                                        
                                 }
                         }
                 }
                 stage('Artifactory'){
                         steps { 
-                                dir('Code') {
+                                
                                         echo 'creating Artifacts'         
                                         archiveArtifacts 'build/*.war'
                                         echo 'Artifact created'
-                                }
+                                
                          }
                  }
                 stage('Approval Step'){
@@ -63,7 +63,7 @@ pipeline {
                                    }
                 }
                 stage('Release'){
-                                agent {label 'docker'}
+                                agent {label 'windows'}
                                 when {
                                         expression { params.Release == true }
                                 }
