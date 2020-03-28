@@ -6,8 +6,10 @@ pipeline {
                 booleanParam(name: 'Release', defaultValue: false, description: 'Will Push code to the Server')             
         }
         tools {
-                   jdk 'JAVA_HOME'
-                   //maven 'maven'      
+                   jdk 'PratianTFS'
+                   //maven 'maven'
+                   msbuild 'msbuild15'
+                   sonarqube scanner 'sonarscanner'
                }
         stages {
                 stage('checkout'){
