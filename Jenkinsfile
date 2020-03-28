@@ -8,8 +8,8 @@ pipeline {
         tools {
                    jdk 'PratianTFS'
                    //maven 'maven'
-                   msbuild 'msbuild15'
-                   sonarqube scanner 'sonarscanner'
+                   //msbuild 'msbuild15'
+                   //sonarqube scanner 'sonarscanner'
                }
         stages {
                 stage('checkout'){
