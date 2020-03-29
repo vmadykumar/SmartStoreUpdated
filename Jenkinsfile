@@ -8,7 +8,7 @@ pipeline {
         tools {
                    jdk 'java51'
                    //maven 'maven'
-                   msbuild 'msbuild15'
+                   MSBuild 'msbuild15'
                    //sonarqube scanner 'sonarscanner'
                }
         stages {
