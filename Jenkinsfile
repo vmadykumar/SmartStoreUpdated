@@ -43,15 +43,15 @@ pipeline {
                                 }
                         }
                 }
-                stage('Artifactory'){
-                        steps { 
+                //stage('Artifactory'){
+                  //      steps { 
                                 
-                                        echo 'creating Artifacts'         
-                                        archiveArtifacts 'build/*.war'
-                                        echo 'Artifact created'
+                  //                      echo 'creating Artifacts'         
+                  //                      archiveArtifacts 'build/*.war'
+                  //                      echo 'Artifact created'
                                 
-                         }
-                 }
+                  //       }
+                 //}
                 stage('Approval Step'){
                                    when {
                                         expression { params.Release == true}
@@ -75,12 +75,12 @@ pipeline {
                                 echo 'Release Completed'
                         }
                 }
-                stage('Notification') {
-                        steps {
-                                echo 'Sending Email'
-                                emailext body: 'Build Suceeded', subject: 'Jenkins Job Status', to: 'vikash.bcet@gmail.com'
-                        }
-                }
+                //stage('Notification') {
+                //        steps {
+                //                echo 'Sending Email'
+                //                emailext body: 'Build Suceeded', subject: 'Jenkins Job Status', to: 'vikash.bcet@gmail.com'
+                //        }
+                //}
         }
         post {
                         always {
