@@ -1,14 +1,14 @@
 pipeline {
-        agent {label 'windows'}
+        agent {label 'windows(.51)'}
         parameters {
                 booleanParam(name: 'Run_Build', defaultValue: false, description: 'Will Build Code and execute Test Cases')
                 booleanParam(name: 'Run_SonarAnalysis', defaultValue: false, description: 'Will Run Sonar Code Analysis')
                 booleanParam(name: 'Release', defaultValue: false, description: 'Will Push code to the Server')             
         }
         tools {
-                   jdk 'PratianTFS'
+                   jdk 'java51'
                    //maven 'maven'
-                   //msbuild 'msbuild15'
+                   msbuild 'msbuild15'
                    //sonarqube scanner 'sonarscanner'
                }
         stages {
@@ -64,17 +64,17 @@ pipeline {
                                                 }
                                    }
                 }
-                //stage('Release'){
-                //                agent {label 'windows'}
-                //                when {
-                //                        expression { params.Release == true }
-                //                }
-                //        steps {
-                //                echo 'Starting Release'
-                //                deploy adapters: [tomcat7(credentialsId: '51d79b50-5fd8-4444-91eb-c6ead7dc4151', path: '', url: 'http://172.30.13.143:8081')], contextPath: '/HappyTrip', war: 'Code/target/*.war'
-                //                echo 'Release Completed'
-                //        }
-                //}
+                stage('Release'){
+                                agent {label 'windows(.51)'}
+                                when {
+                                        expression { params.Release == true }
+                                }
+                        steps {
+                                echo 'Starting Release'
+                                deploy adapters: [tomcat7(credentialsId: '51d79b50-5fd8-4444-91eb-c6ead7dc4151', path: '', url: 'http://172.30.13.143:8081')], contextPath: '/HappyTrip', war: 'Code/target/*.war'
+                                echo 'Release Completed'
+                        }
+                }
                 //stage('Notification') {
                 //        steps {
                 //                echo 'Sending Email'
