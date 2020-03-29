@@ -64,17 +64,17 @@ pipeline {
                                                 }
                                    }
                 }
-                stage('Release'){
-                                agent {label 'windows'}
-                                when {
-                                        expression { params.Release == true }
-                                }
-                        steps {
-                                echo 'Starting Release'
-                                deploy adapters: [tomcat7(credentialsId: '51d79b50-5fd8-4444-91eb-c6ead7dc4151', path: '', url: 'http://172.30.13.143:8081')], contextPath: '/HappyTrip', war: 'Code/target/*.war'
-                                echo 'Release Completed'
-                        }
-                }
+                //stage('Release'){
+                //                agent {label 'windows'}
+                //                when {
+                //                        expression { params.Release == true }
+                //                }
+                //        steps {
+                //                echo 'Starting Release'
+                //                deploy adapters: [tomcat7(credentialsId: '51d79b50-5fd8-4444-91eb-c6ead7dc4151', path: '', url: 'http://172.30.13.143:8081')], contextPath: '/HappyTrip', war: 'Code/target/*.war'
+                //                echo 'Release Completed'
+                //        }
+                //}
                 //stage('Notification') {
                 //        steps {
                 //                echo 'Sending Email'
@@ -85,18 +85,18 @@ pipeline {
         post {
                         always {
                                 echo 'One way or another, I have finished'
-                                deleteDir() /* clean up our workspace */
+                                //deleteDir() /* clean up our workspace */
                         }
                         success {
                                 echo 'Yeppie.. I succeeeded!'
-                                emailext body: 'Everything went well :) ${env.BUILD_URL}', subject: 'Succeeded Pipeline: ${currentBuild.fullDisplayName}', to: 'vikash.bcet@gmail.com'
+                                //emailext body: 'Everything went well :) ${env.BUILD_URL}', subject: 'Succeeded Pipeline: ${currentBuild.fullDisplayName}', to: 'vikash.bcet@gmail.com'
                         }
                         unstable {
                                 echo 'Oh! No I am unstable :/'
                         }
                         failure {
                                 echo 'Shit.. I failed :('
-                                emailext body: 'Something is wrong with ${env.BUILD_URL}', subject: 'Failed Pipeline: ${currentBuild.fullDisplayName}', to: 'vikash.bcet@gmail.com'
+                               // emailext body: 'Something is wrong with ${env.BUILD_URL}', subject: 'Failed Pipeline: ${currentBuild.fullDisplayName}', to: 'vikash.bcet@gmail.com'
                         }
                         changed {
                                 echo 'Things were different before...'
