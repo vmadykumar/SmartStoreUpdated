@@ -40,6 +40,6 @@ cd /d %~dp0
 echo "Restoring NuGet packages"
 lib\nuget\nuget.exe restore "src\SmartStoreNET.sln"
 
-%msbuild% SmartStoreNET.proj /p:SlnName=SmartStoreNET /m /p:DebugSymbols=false /p:DebugType=None /maxcpucount %*
+%msbuild% SmartStoreNET.proj /p:SlnName=SmartStoreNET /m /p:PublishDir=C:\Jenkins\workspace\SmartStore\Artifacts /p:DeployOnBuild=true /p:DeployDefaultTarget=WebPublish /p:WebPublishMethod=FileSystem /p:SkipInvalidConfigurations=true /t:build /p:Configuration=Release /p:Platform=\"Any CPU\" /p:DebugSymbols=true /p:DebugType=None /maxcpucount %*
 
 :end
