@@ -71,7 +71,14 @@ pipeline {
                                 }
                         steps {
                                 echo 'Starting Release'
-                                deploy adapters: [tomcat7(credentialsId: '51d79b50-5fd8-4444-91eb-c6ead7dc4151', path: '', url: 'http://172.30.13.143:8081')], contextPath: '/HappyTrip', war: 'Code/target/*.war'
+                                bat label: 'MsDeploy',
+        script: ''' 
+          // For Localhost
+          //"C:\\Program Files (x86)\\IIS\\Microsoft Web Deploy V3\\msdeploy.exe" -verb:sync -source:package="PrimeDotnet\\bin\\Debug\\Package\\PrimeDotnet.zip" -dest:auto,computerName=localhost
+
+          // For Remote Server
+           "C:\\Program Files (x86)\\IIS\\Microsoft Web Deploy V3\\msdeploy.exe" -verb:sync -source:package="C:\Jenkins\workspace\SmartStore\build\Web" -dest:dirPath="D:\vikash\SmartStore\Live",computerName="172.30.11.7",userName=vikash.kumar,password="password@123",authType=NTLM -allowUntrusted=true
+        '''
                                 echo 'Release Completed'
                         }
                 }
