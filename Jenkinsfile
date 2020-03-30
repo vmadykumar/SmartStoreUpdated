@@ -77,7 +77,7 @@ pipeline {
           //"C:\\Program Files (x86)\\IIS\\Microsoft Web Deploy V3\\msdeploy.exe" -verb:sync -source:package="PrimeDotnet\\bin\\Debug\\Package\\PrimeDotnet.zip" -dest:auto,computerName=localhost
 
           // For Remote Server
-           "C:\\Program Files (x86)\\IIS\\Microsoft Web Deploy V3\\msdeploy.exe" -verb:sync -source:dirPath="C:\Jenkins\workspace\SmartStore\build\Web" -dest:dirPath="D:\vikash\SmartStore\Live",computerName="172.30.11.7",userName=vikash.kumar,password="password@123",authType=NTLM -allowUntrusted=true
+           "C:\\Program Files (x86)\\IIS\\Microsoft Web Deploy V3\\msdeploy.exe" -verb:sync -source:dirPath="C:\\Jenkins\\workspace\\SmartStore\\build\\Web" -dest:dirPath="D:\\vikash\\SmartStore\\Live",computerName="172.30.11.7",userName=vikash.kumar,password="password@123",authType=NTLM -allowUntrusted=true
         '''
                                 echo 'Release Completed'
                         }
