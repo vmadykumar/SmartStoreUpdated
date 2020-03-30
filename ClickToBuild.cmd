@@ -2,6 +2,6 @@
 cls
 echo Building SmartStore.NET...   											
 
-call build.bat
+call build.bat /t:Deploy
 
 pause
