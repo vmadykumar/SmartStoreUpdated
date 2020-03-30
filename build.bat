@@ -40,6 +40,6 @@ cd /d %~dp0
 echo "Restoring NuGet packages"
 lib\nuget\nuget.exe restore "src\SmartStoreNET.sln"
 
-%msbuild% SmartStoreNET.proj /p:SlnName=SmartStoreNET /m /t:build /p:Configuration=Release /P:DeployOnBuild=True /p:AllowUntrustedCertificate=True /p:MSDeployServiceUrl=<172.30.11.7> /P:DeployIISAppPath=\"D:\vikash\SmartStore\Live\" /p:DebugSymbols=true /p:DebugType=None /maxcpucount %*
+%msbuild% SmartStoreNET.proj /p:SlnName=SmartStoreNET /m /t:build /p:Configuration=Release /P:DeployOnBuild=True /p:AllowUntrustedCertificate=True /p:MSDeployServiceUrl=172.30.11.7 /P:DeployIISAppPath=\"D:\vikash\SmartStore\Live\" /p:DebugSymbols=true /p:DebugType=None /maxcpucount %*
 
 :end
