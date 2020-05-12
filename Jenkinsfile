@@ -37,7 +37,7 @@ pipeline {
                         steps { 
                                 
                                         echo 'Executing sonar Analysis'        
-                                        withSonarQubeEnv('sonarscanner') {
+                                        withSonarQubeEnv('qa') {
                                                 bat 'sonar:sonar'  
                                         
                                 }
